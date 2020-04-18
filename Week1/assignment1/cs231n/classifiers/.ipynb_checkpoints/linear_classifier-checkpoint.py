@@ -7,7 +7,7 @@ from cs231n.classifiers.linear_svm import *
 from cs231n.classifiers.softmax import *
 from past.builtins import xrange
 
-# Parent : provide basic structure and common functionc ! also function to override
+
 class LinearClassifier(object):
 
     def __init__(self):
@@ -61,9 +61,7 @@ class LinearClassifier(object):
             
             index_chosen=np.random.choice(np.arange(num_train),batch_size)
             X_batch=X[index_chosen,:]
-
-            y_batch=y[index_chosen]
-
+            y_batch
 
             # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
@@ -78,7 +76,7 @@ class LinearClassifier(object):
             #########################################################################
             # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-            self.W-= learning_rate*grad
+            pass
 
             # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
@@ -108,8 +106,8 @@ class LinearClassifier(object):
         ###########################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-        score=np.dot(X,self.W)
-        y_pred=np.argmax(score,axis=1)
+        pass
+
         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         return y_pred
 
@@ -130,8 +128,6 @@ class LinearClassifier(object):
         """
         pass
 
-
-# override the loss function with each specific loss function:
 
 class LinearSVM(LinearClassifier):
     """ A subclass that uses the Multiclass SVM loss function """
