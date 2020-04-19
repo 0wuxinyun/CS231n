@@ -32,28 +32,14 @@ def softmax_loss_naive(W, X, y, reg):
     # regularization!                                                           #
     #############################################################################
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-    N=X.shape[0]
-    D=X.shape[1]
-    C=dW.shape[1]
-    for i in range(N):
-      x=X[i,:] # dim: 1,D
-      score = np.dot(x,W) 
-      score -= np.max(score)
-      score=np.exp(score)
-      denominator = np.sum(score)
-      probability = score/denominator
-      loss+=-np.log(probability[y[i]])
-      dP=probability
-      dP[y[i]]-=1
-      dW += np.reshape(x.T,(D,1))*np.reshape(dP,(1,C))
 
-    # Need normalize them
-    dW/=N+reg*W
-    loss/=N+0.5*reg*np.sum(W*W)
+    E_scores= np.exp(np.dot(X,W))
+    Denominator = E_
+    E_pro=
 
-   
-    # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
     
+    # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
+
     return loss, dW
 
 
@@ -75,26 +61,7 @@ def softmax_loss_vectorized(W, X, y, reg):
     #############################################################################
     # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-    N=X.shape[0]
-    score=np.dot(X,W)
-    score-=np.reshape(np.max(score,axis=1),(N,1))
-    E_scores= np.exp(score)
-    Denominator = np.reshape(np.sum(E_scores,axis=1),(N,1))
-    E_pro=E_scores/Denominator
-    loss =np.mean(-np.log(E_pro[np.arange(N),y]))+0.5*reg*np.sum(W*W)
-
-    # Derivative of loss function wpt weights 
-    '''
-    loss rpt probability : 
-          true class : probability-1
-          other class: probability
-    loss rpt weights :
-          true class : x(probability-1)
-          other class: xprobability
-    '''
-    dP=E_pro
-    dP[np.arange(N),y]=E_pro[np.arange(N),y]-1
-    dW=np.dot(X.T,dP)/N+reg*W
+    pass
 
     # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 

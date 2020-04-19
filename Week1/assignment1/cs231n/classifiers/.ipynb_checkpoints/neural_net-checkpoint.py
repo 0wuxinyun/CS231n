@@ -10,12 +10,8 @@ class TwoLayerNet(object):
     """
     A two-layer fully-connected neural network. The net has an input dimension of
     N, a hidden layer dimension of H, and performs classification over C classes.
-    We train the network with a 
-    softmax loss function and L2 regularization 
-    on the
-    weight matrices. The network uses a 
-    ReLU nonlinearity
-    after the first fully
+    We train the network with a softmax loss function and L2 regularization on the
+    weight matrices. The network uses a ReLU nonlinearity after the first fully
     connected layer.
 
     In other words, the network has the following architecture:
@@ -27,10 +23,8 @@ class TwoLayerNet(object):
 
     def __init__(self, input_size, hidden_size, output_size, std=1e-4):
         """
-        Initialize the model. 
-        Weights are initialized to small random values and
-        biases are initialized to zero. 
-        Weights and biases are stored in the
+        Initialize the model. Weights are initialized to small random values and
+        biases are initialized to zero. Weights and biases are stored in the
         variable self.params, which is a dictionary with the following keys:
 
         W1: First layer weights; has shape (D, H)
@@ -43,8 +37,6 @@ class TwoLayerNet(object):
         - hidden_size: The number of neurons H in the hidden layer.
         - output_size: The number of classes C.
         """
-
-        # initilize weights and bias 
         self.params = {}
         self.params['W1'] = std * np.random.randn(input_size, hidden_size)
         self.params['b1'] = np.zeros(hidden_size)
@@ -88,12 +80,7 @@ class TwoLayerNet(object):
         #############################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-        # First Layer: 
-        H1=np.dot(X,W1)+b1
-        # ReLU:
-        H1[H1<=0]=0
-        # Second Layer :
-        scores=np.dot(H1,W2)+b2   # dim (N, C)
+        pass
 
         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
@@ -111,13 +98,7 @@ class TwoLayerNet(object):
         #############################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-        # softmax loss function: 
-        # Numerical stability : -max xi
-        scores = scores - np.reshape(np.max(scores,axis=1),(N,1))
-        E_scores = np.exp(scores)
-        denominator = np.reshape(np.sum(E_scores,axis=1),(N,1))
-        Pro = E_scores / denominator
-        loss = np.mean(-np.log(Pro[np.arange(N),y])) + reg* (np.sum(W1*W1)+np.sum(W2*W2))
+        pass
 
         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
@@ -130,20 +111,7 @@ class TwoLayerNet(object):
         #############################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-        # gradient of last layer : 
-
-        # dloss/dscore = pro or pro-1
-        dh2= Pro 
-        dh2[np.arange(N),y]-=1
-        grads['b2']= np.sum(dh2,axis=0)/N
-        grads['W2']= np.dot(H1.T,dh2)/N+2*reg*W2 # L2 reg loss 
-
-
-        dh1= np.dot(dh2,W2.T)
-        dh1[H1<=0]=0
-        grads['b1']=np.sum(dh1,axis=0)/N
-        grads['W1']=np.dot(X.T,dh1)/N+2*reg*W1
-
+        pass
 
         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
@@ -154,7 +122,7 @@ class TwoLayerNet(object):
               reg=5e-6, num_iters=100,
               batch_size=200, verbose=False):
         """
-        Train this neural network using stochastic gradient descent. SGD 
+        Train this neural network using stochastic gradient descent.
 
         Inputs:
         - X: A numpy array of shape (N, D) giving training data.
@@ -171,8 +139,6 @@ class TwoLayerNet(object):
         - verbose: boolean; if true print progress during optimization.
         """
         num_train = X.shape[0]
-        # EPOCH is differnt from iterations :
-        #   epotch x1 : whole data sets
         iterations_per_epoch = max(num_train / batch_size, 1)
 
         # Use SGD to optimize the parameters in self.model
@@ -190,10 +156,7 @@ class TwoLayerNet(object):
             #########################################################################
             # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-            index=np.random.choice(np.arange(num_train),batch_size)
-            X_batch=X[index,:]
-            y_batch=y[index]
-
+            pass
 
             # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
@@ -209,10 +172,7 @@ class TwoLayerNet(object):
             #########################################################################
             # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-            self.params['W1']-=grads['W1']*learning_rate
-            self.params['b1']-=grads['b1']*learning_rate
-            self.params['W2']-=grads['W2']*learning_rate
-            self.params['b2']-=grads['b2']*learning_rate
+            pass
 
             # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
@@ -258,7 +218,8 @@ class TwoLayerNet(object):
         ###########################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-        y_pred = np.argmax(self.loss(X), axis = 1)
+        pass
+
         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
         return y_pred
